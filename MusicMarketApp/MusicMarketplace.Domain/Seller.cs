@@ -1,4 +1,4 @@
-﻿namespace MusicMarketplace.Domain;
+﻿using MusicMarketplace.Domain;
 
 /// <summary>
 /// Продавец.
@@ -28,9 +28,15 @@ public class Seller
     /// <summary>
     /// Список товаров.
     /// </summary>
-    public List<Product> Products = [];
+    public List<Product> Products = new();
 
+    /// <summary>
+    /// Конструктор по умолчанию. 
+    /// </summary>
     public Seller() { }
+    /// <summary>
+    /// Конструктор с параметрами. 
+    /// </summary>
     public Seller(int id, string name, string country, double price)
     {
         Id = id;

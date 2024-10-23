@@ -11,14 +11,14 @@ public class Product
     public int Id;
 
     /// <summary>
-    /// Тип аудионосителя.
+    /// Тип аудионосителя: диск|кассета|виниловая пластинка.
     /// </summary>
-    public CarrierType TypeOfCarrier { get; set; }
+    public string TypeOfCarrier { get; set; } = string.Empty;
 
     /// <summary>
     /// Тип издания: альбом|сингл.
     /// </summary>
-    public PublicationType PublicationType { get; set; }
+    public string PublicationType { get; set; } = string.Empty;
 
     /// <summary>
     /// Исполнитель
@@ -36,14 +36,14 @@ public class Product
     public string MadeIn { get; set; } = string.Empty;
 
     /// <summary>
-    /// Cостояние аудионосителя.
+    /// Cостояние аудионосителя: новое || отличное || хорошее || удовлетворительное || плохое.
     /// </summary>
-    public MediaStatus MediaStatus { get; set; }
+    public string MediaStatus { get; set; } = string.Empty;
 
     /// <summary>
-    /// Cостояние упаковки.
+    /// Cостояние упаковки: новое || отличное || хорошее || удовлетворительное || плохое.
     /// </summary>
-    public PackagingStatus PackagingCondition { get; set; }
+    public string PackagingCondition { get; set; } = string.Empty;
 
     /// <summary>
     /// Цена
@@ -53,17 +53,28 @@ public class Product
     /// <summary>
     /// Cтатус: в продаже || продан. 
     /// </summary>
-    public ProductStatus Status { get; set; }
+    public string Status { get; set; } = string.Empty;
+
+    /// <summary>
+    /// ID Продавца.
+    /// </summary>
+    public int SellerId { get; set; }
 
     /// <summary>
     /// Продавец
     /// </summary>
     public Seller? Seller { get; set; }
 
+    /// <summary>
+    /// Конструктор по умолчанию. 
+    /// </summary>
     public Product() { }
 
-    public Product(int id, CarrierType typeOfCarrier, PublicationType publicationType, string creator, string name, string madeIn,
-        MediaStatus mediaStatus, PackagingStatus packagingCondition, double price, ProductStatus status, Seller seller)
+    /// <summary>
+    /// Конструктор с параметрами. 
+    /// </summary>
+    public Product(int id, string typeOfCarrier, string publicationType, string creator, string name, string madeIn,
+        string mediaStatus, string packagingCondition, double price, string status, Seller seller)
     {
         Id = id;
         TypeOfCarrier = typeOfCarrier;
@@ -77,56 +88,4 @@ public class Product
         Status = status;
         Seller = seller;
     }
-}
-
-/// <summary>
-/// Тип аудионосителя.
-/// </summary>
-public enum CarrierType
-{
-    Cassette,
-    Disc,
-    VinylRecord
-}
-
-/// <summary>
-/// Тип издания.
-/// </summary>
-public enum PublicationType
-{
-    Album,
-    Single
-}
-
-/// <summary>
-/// Статус товара.
-/// </summary>
-public enum ProductStatus
-{
-    Sale,
-    Sold
-}
-
-/// <summary>
-/// Состояние.
-/// </summary>
-public enum MediaStatus
-{
-    New,
-    Excellent,
-    Good,
-    Satisfactory,
-    Bad
-}
-
-/// <summary>
-/// Состояние.
-/// </summary>
-public enum PackagingStatus
-{
-    New,
-    Excellent,
-    Good,
-    Satisfactory,
-    Bad
 }

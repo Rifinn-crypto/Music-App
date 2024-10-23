@@ -3,7 +3,7 @@
 /// <summary>
 /// Покупатель.
 /// </summary>
-public class Сustomer
+public class Customer
 {
     /// <summary>
     /// ID Покупателя.
@@ -28,11 +28,16 @@ public class Сustomer
     /// <summary>
     /// История заказов. 
     /// </summary>
-    public List<Purchase> Purchases = [];
+    public List<Purchase> Purchases = new();
 
-    public Сustomer() { }
-
-    public Сustomer(int id, string name, string country, string address, List<Purchase> purchases)
+    /// <summary>
+    /// Конструктор по умолчанию. 
+    /// </summary>
+    public Customer() { }
+    /// <summary>
+    /// Конструктор с параметрами. 
+    /// </summary>
+    public Customer(int id, string name, string country, string address, List<Purchase> purchases)
     {
         Id = id;
         Name = name;

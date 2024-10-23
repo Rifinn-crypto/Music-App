@@ -40,23 +40,23 @@ public class MusicMarketFixture
             product6.Name = "PWR/UP";
             product7.Name = "Rush!";
 
-            product0.TypeOfCarrier = CarrierType.Cassette;
-            product1.TypeOfCarrier = CarrierType.Disc;
-            product2.TypeOfCarrier = CarrierType.VinylRecord;
-            product3.TypeOfCarrier = CarrierType.Disc;
-            product4.TypeOfCarrier = CarrierType.Cassette;
-            product5.TypeOfCarrier = CarrierType.VinylRecord;
-            product6.TypeOfCarrier = CarrierType.Cassette;
-            product7.TypeOfCarrier = CarrierType.Disc;
+            product0.TypeOfCarrier = "cassette";
+            product1.TypeOfCarrier = "disc";
+            product2.TypeOfCarrier = "vinyl record";
+            product3.TypeOfCarrier = "disc";
+            product4.TypeOfCarrier = "cassette";
+            product5.TypeOfCarrier = "vinyl record";
+            product6.TypeOfCarrier = "cassette";
+            product7.TypeOfCarrier = "disc";
 
-            product0.PublicationType = PublicationType.Album;
-            product1.PublicationType = PublicationType.Album;
-            product2.PublicationType = PublicationType.Album;
-            product3.PublicationType = PublicationType.Single;
-            product4.PublicationType = PublicationType.Album;
-            product5.PublicationType = PublicationType.Single;
-            product6.PublicationType = PublicationType.Album;
-            product7.PublicationType = PublicationType.Album;
+            product0.PublicationType = "album";
+            product1.PublicationType = "album";
+            product2.PublicationType = "album";
+            product3.PublicationType = "single";
+            product4.PublicationType = "album";
+            product5.PublicationType = "single";
+            product6.PublicationType = "album";
+            product7.PublicationType = "album";
 
             product0.Creator = "Aria";
             product1.Creator = "Monetochka";
@@ -76,23 +76,23 @@ public class MusicMarketFixture
             product6.MadeIn = "EU";
             product7.MadeIn = "UK & Europe";
 
-            product0.MediaStatus = MediaStatus.Bad;
-            product1.MediaStatus = MediaStatus.New;
-            product2.MediaStatus = MediaStatus.Excellent;
-            product3.MediaStatus = MediaStatus.Satisfactory;
-            product4.MediaStatus = MediaStatus.Excellent;
-            product5.MediaStatus = MediaStatus.Good;
-            product6.MediaStatus = MediaStatus.Excellent;
-            product7.MediaStatus = MediaStatus.New;
+            product0.MediaStatus = "bad";
+            product1.MediaStatus = "new";
+            product2.MediaStatus = "excellent";
+            product3.MediaStatus = "satisfactory";
+            product4.MediaStatus = "excellent";
+            product5.MediaStatus = "good";
+            product6.MediaStatus = "excellent";
+            product7.MediaStatus = "new";
 
-            product0.PackagingCondition = PackagingStatus.Satisfactory;
-            product1.PackagingCondition = PackagingStatus.New;
-            product2.PackagingCondition = PackagingStatus.Good;
-            product3.PackagingCondition = PackagingStatus.Bad;
-            product4.PackagingCondition = PackagingStatus.Excellent;
-            product5.PackagingCondition = PackagingStatus.Excellent;
-            product6.PackagingCondition = PackagingStatus.Good;
-            product7.PackagingCondition = PackagingStatus.New;
+            product0.PackagingCondition = "satisfactory";
+            product1.PackagingCondition = "new";
+            product2.PackagingCondition = "good";
+            product3.PackagingCondition = "bad";
+            product4.PackagingCondition = "excellent";
+            product5.PackagingCondition = "excellent";
+            product6.PackagingCondition = "good";
+            product7.PackagingCondition = "new";
 
             product0.Price = 1750;
             product1.Price = 4890;
@@ -103,14 +103,14 @@ public class MusicMarketFixture
             product6.Price = 3990;
             product7.Price = 4990;
 
-            product0.Status = ProductStatus.Sale;
-            product1.Status = ProductStatus.Sale;
-            product2.Status = ProductStatus.Sold;
-            product3.Status = ProductStatus.Sold;
-            product4.Status = ProductStatus.Sold;
-            product5.Status = ProductStatus.Sold;
-            product6.Status = ProductStatus.Sold;
-            product7.Status = ProductStatus.Sold;
+            product0.Status = "sale";
+            product1.Status = "sale";
+            product2.Status = "sold";
+            product3.Status = "sold";
+            product4.Status = "sold";
+            product5.Status = "sold";
+            product6.Status = "sold";
+            product7.Status = "sold";
 
             product0.Seller = new Seller(0, "Muzzona", "Russia", 300);
             product1.Seller = new Seller(1, "Muzzona", "Russia", 300);
@@ -170,6 +170,7 @@ public class MusicMarketFixture
             seller2.Products.Add(products[6]);
             seller2.Products.Add(products[7]);
 
+
             sellers.Add(seller0);
             sellers.Add(seller1);
             sellers.Add(seller2);
@@ -192,11 +193,13 @@ public class MusicMarketFixture
             var purchase4 = new Purchase();
             var purchase3 = new Purchase();
 
+
             purchase0.Id = 0;
             purchase1.Id = 1;
             purchase2.Id = 2;
             purchase3.Id = 3;
             purchase4.Id = 4;
+
 
             purchase0.Products.Add(products[7]);
             purchase1.Products.Add(products[3]);
@@ -204,11 +207,11 @@ public class MusicMarketFixture
             purchase3.Products.Add(products[5]);
             purchase4.Products.Add(products[6]);
 
-            purchase0.Date = new DateTime(2023, 3, 12);
-            purchase1.Date = new DateTime(2023, 3, 14);
-            purchase2.Date = new DateTime(2023, 3, 12);
-            purchase0.Date = new DateTime(2023, 01, 10);
-            purchase0.Date = new DateTime(2023, 3, 11);
+            purchase0.Date = DateTime.Parse("2023/03/22");
+            purchase1.Date = DateTime.Parse("2023/04/4");
+            purchase2.Date = DateTime.Parse("2023/04/9");
+            purchase3.Date = DateTime.Parse("2023/03/10");
+            purchase4.Date = DateTime.Parse("2023/03/31");
 
             purchases.Add(purchase0);
             purchases.Add(purchase1);
@@ -219,23 +222,24 @@ public class MusicMarketFixture
         }
     }
 
-    public List<Сustomer> FixtureCustomers
+    public List<Customer> FixtureCustomers
     {
         get
         {
             var purchases = FixturePurchases;
-            var customers = new List<Сustomer>();
-            var customer0 = new Сustomer();
-            var customer1 = new Сustomer();
-            var customer2 = new Сustomer();
-            var customer3 = new Сustomer();
-            var customer4 = new Сustomer();
+            var customers = new List<Customer>();
+            var customer0 = new Customer();
+            var customer1 = new Customer();
+            var customer2 = new Customer();
+            var customer3 = new Customer();
+            var customer4 = new Customer();
 
             customer0.Id = 0;
             customer1.Id = 1;
             customer2.Id = 2;
             customer3.Id = 3;
             customer4.Id = 4;
+
 
             customer0.Name = "Tikhonov Mark Sergeevich";
             customer1.Name = "Klimova Sofya Dmitrievna";
