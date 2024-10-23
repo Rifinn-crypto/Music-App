@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using MusicMarket;
 using MusicMarket.Api.Dto;
 using MusicMarket.Api.Repository;
-using System.Runtime.InteropServices;
+using Microsoft.Extensions.Logging;
+using MusicMarketplace.Domain;
 
 namespace MusicMarket.Api.Controllers;
 

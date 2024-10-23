@@ -77,7 +77,7 @@ public class CustomerController : ControllerBase
     public void Post([FromBody] CustomerPostDto customer)
     {
         _logger.LogInformation("Add new customer");
-        _customersRepository.Customers.Add(_mapper.Map<Customer>(customer));
+        _customersRepository.Customers.Add(_mapper.Map<Сustomer>(customer));
     }
 
 
@@ -100,7 +100,7 @@ public class CustomerController : ControllerBase
         else
         {
             _logger.LogInformation($"Update information customer with id = {id}");
-            _mapper.Map<CustomerPostDto, Customer>(customerToPut, customer);
+            _mapper.Map<CustomerPostDto, Сustomer>(customerToPut, customer);
             return Ok();
         }
     }
