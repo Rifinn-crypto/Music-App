@@ -1,6 +1,8 @@
-﻿using MusicMarketplace.Domain;
+﻿namespace MusicMarketTests;
 
-namespace MusicMarketplace.Tests;
+using MusicMarket;
+using System;
+using System.Collections.Generic;
 
 public class MusicMarketFixture
 {
@@ -22,14 +24,14 @@ public class MusicMarketFixture
             var product6 = new Product();
             var product7 = new Product();
 
-            product0.Id = 0;
-            product1.Id = 1;
-            product2.Id = 2;
-            product3.Id = 3;
-            product4.Id = 4;
-            product5.Id = 5;
-            product6.Id = 6;
-            product7.Id = 7;
+            product0.Id = 1;
+            product1.Id = 2;
+            product2.Id = 3;
+            product3.Id = 4;
+            product4.Id = 5;
+            product5.Id = 6;
+            product6.Id = 7;
+            product7.Id = 8;
 
             product0.Name = "The Curse of the Seas";
             product1.Name = "Decorative and applied art";
@@ -112,14 +114,14 @@ public class MusicMarketFixture
             product6.Status = "sold";
             product7.Status = "sold";
 
-            product0.Seller = new Seller(0, "Muzzona", "Russia", 300);
-            product1.Seller = new Seller(1, "Muzzona", "Russia", 300);
-            product2.Seller = new Seller(2, "Muzzona", "Russia", 300);
-            product3.Seller = new Seller(3, "Muzzona", "Russia", 300);
-            product4.Seller = new Seller(4, "Skifmusic", "UK", 750);
-            product5.Seller = new Seller(5, "StopRobot", "USA", 680);
-            product6.Seller = new Seller(6, "StopRobot", "USA", 680);
-            product7.Seller = new Seller(7, "StopRobot", "USA", 680);
+            product0.IdSeller = 1;
+            product1.IdSeller = 1;
+            product2.IdSeller = 1;
+            product3.IdSeller = 1;
+            product4.IdSeller = 2;
+            product5.IdSeller = 3;
+            product6.IdSeller = 3;
+            product7.IdSeller = 3;
 
             products.Add(product0);
             products.Add(product1);
@@ -145,9 +147,9 @@ public class MusicMarketFixture
             var seller1 = new Seller();
             var seller2 = new Seller();
 
-            seller0.Id = 0;
-            seller1.Id = 1;
-            seller2.Id = 2;
+            seller0.Id = 1;
+            seller1.Id = 2;
+            seller2.Id = 3;
 
             seller0.ShopName = "Muzzona";
             seller1.ShopName = "Skifmusic";
@@ -160,16 +162,6 @@ public class MusicMarketFixture
             seller0.Price = 300;
             seller1.Price = 750;
             seller2.Price = 680;
-
-            seller0.Products.Add(products[0]);
-            seller0.Products.Add(products[1]);
-            seller0.Products.Add(products[2]);
-            seller0.Products.Add(products[3]);
-            seller1.Products.Add(products[4]);
-            seller2.Products.Add(products[5]);
-            seller2.Products.Add(products[6]);
-            seller2.Products.Add(products[7]);
-
 
             sellers.Add(seller0);
             sellers.Add(seller1);
@@ -194,24 +186,30 @@ public class MusicMarketFixture
             var purchase3 = new Purchase();
 
 
-            purchase0.Id = 0;
-            purchase1.Id = 1;
-            purchase2.Id = 2;
-            purchase3.Id = 3;
-            purchase4.Id = 4;
+            purchase0.Id = 1;
+            purchase1.Id = 2;
+            purchase2.Id = 3;
+            purchase3.Id = 4;
+            purchase4.Id = 5;
 
 
-            purchase0.Products.Add(products[7]);
-            purchase1.Products.Add(products[3]);
-            purchase2.Products.Add(products[4]);
-            purchase3.Products.Add(products[5]);
-            purchase4.Products.Add(products[6]);
+            purchase0.IdProduct = 7;
+            purchase1.IdProduct = 3;
+            purchase2.IdProduct = 4;
+            purchase3.IdProduct = 5;
+            purchase4.IdProduct = 6;
 
-            purchase0.Date = DateTime.Parse("2023/03/22");
-            purchase1.Date = DateTime.Parse("2023/04/4");
-            purchase2.Date = DateTime.Parse("2023/04/9");
-            purchase3.Date = DateTime.Parse("2023/03/10");
-            purchase4.Date = DateTime.Parse("2023/03/31");
+            purchase0.IdCustomer = 1;
+            purchase1.IdProduct = 2;
+            purchase2.IdProduct = 3;
+            purchase3.IdProduct = 4;
+            purchase4.IdProduct = 5;
+
+            purchase0.Date = new DateTime(2024, 10, 12);
+            purchase1.Date = new DateTime(2024, 10, 14);
+            purchase2.Date = new DateTime(2024, 10, 12);
+            purchase0.Date = new DateTime(2024, 09, 10);
+            purchase0.Date = new DateTime(2024, 10, 11);
 
             purchases.Add(purchase0);
             purchases.Add(purchase1);
@@ -234,11 +232,11 @@ public class MusicMarketFixture
             var customer3 = new Customer();
             var customer4 = new Customer();
 
-            customer0.Id = 0;
-            customer1.Id = 1;
-            customer2.Id = 2;
-            customer3.Id = 3;
-            customer4.Id = 4;
+            customer0.Id = 1;
+            customer1.Id = 2;
+            customer2.Id = 3;
+            customer3.Id = 4;
+            customer4.Id = 5;
 
 
             customer0.Name = "Tikhonov Mark Sergeevich";
@@ -259,11 +257,6 @@ public class MusicMarketFixture
             customer3.Address = "8, avenue de Coste 24798 Costa";
             customer4.Address = "179817, Ulyanovsk region, Krasnogorsk, Lenin Square, 23";
 
-            customer0.Purchases.Add(purchases[0]);
-            customer1.Purchases.Add(purchases[1]);
-            customer2.Purchases.Add(purchases[2]);
-            customer3.Purchases.Add(purchases[3]);
-            customer4.Purchases.Add(purchases[4]);
 
             customers.Add(customer0);
             customers.Add(customer1);

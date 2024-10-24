@@ -1,34 +1,28 @@
 ﻿using AutoMapper;
 using MusicMarket;
 using MusicMarket.Api.Dto;
-using MusicMarketplace.Domain;
+using MusicMarketServer.Dto;
 
-namespace MusicMarket.Api;
+namespace MusicMarketServer;
 
 /// <summary>
 /// Class for mapping types
 /// </summary>
 public class MappingProfile : Profile
 {
+    /// <summary>
+    /// Mapping settings
+    /// </summary>
     public MappingProfile()
     {
-        CreateMap<Customer, CustomerPostDto>();
         CreateMap<Customer, CustomerGetDto>();
-        CreateMap<Product, ProductPostDto>();
         CreateMap<Product, ProductGetDto>();
-        CreateMap<Purchase, PurchasePostDto>();
         CreateMap<Purchase, PurchaseGetDto>();
-        CreateMap<Seller, SellerPostDto>();
         CreateMap<Seller, SellerGetDto>();
 
-        CreateMap<CustomerGetDto, Customer>();
-        CreateMap<ProductGetDto, Product>();
-        CreateMap<PurchaseGetDto, Purchase>();
-        CreateMap<SellerGetDto, Seller>();
-
-        CreateMap<CustomerPostDto, Customer>();
-        CreateMap<ProductPostDto, Product>();
-        CreateMap<PurchasePostDto, Purchase>();
-        CreateMap<SellerPostDto, Seller>();
+        CreateMap<CustomerPostDto, Customer>().ReverseMap();
+        CreateMap<ProductPostDto, Product>().ReverseMap();
+        CreateMap<PurchasePostDto, Purchase>().ReverseMap();
+        CreateMap<SellerPostDto, Seller>().ReverseMap();
     }
 }

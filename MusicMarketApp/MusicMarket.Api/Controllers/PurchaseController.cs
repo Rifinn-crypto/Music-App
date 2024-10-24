@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MusicMarket;
 using MusicMarket.Api.Dto;
-using MusicMarket.Api.Repository;
-using Microsoft.Extensions.Logging;
-using MusicMarketplace.Domain;
+using MusicMarketplace;
+using MusicMarketServer.Dto;
 
-namespace MusicMarket.Api.Controllers;
+namespace MusicMarketServer.Controllers;
 
 /// <summary>
 /// Контроллер истории покупок
@@ -20,82 +21,93 @@ public class PurchaseController : ControllerBase
     private readonly ILogger<PurchaseController> _logger;
 
     /// <summary>
-    /// Хранение репозитория
+    /// Хранение DbContext
     /// </summary>
-    private readonly IMusicMarketRepository _purchasesRepository;
+    private readonly IDbContextFactory<MusicMarketDbContext> _contextFactory;
     /// <summary>
     /// Хранение маппера
     /// </summary>
     private readonly IMapper _mapper;
-    public PurchaseController(ILogger<PurchaseController> logger, IMusicMarketRepository purchasesRepository, IMapper mapper)
+
+    /// <summary>
+    /// Конструктор контроллера purchase
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="contextFactory"></param>
+    /// <param name="mapper"></param>
+    public PurchaseController(ILogger<PurchaseController> logger, IDbContextFactory<MusicMarketDbContext> contextFactory, IMapper mapper)
     {
         _logger = logger;
-        _purchasesRepository = purchasesRepository;
+        _contextFactory = contextFactory;
         _mapper = mapper;
     }
 
     /// <summary>
     /// GET-запрос на получение всех элементов коллекции
     /// </summary>
-    /// <returns>list of purchases</returns>
+    /// <returns>Returns a list of purchases</returns>
     [HttpGet]
-    public IEnumerable<PurchaseGetDto> Get()
+    public async Task<IEnumerable<PurchaseGetDto>> Get()
     {
-        _logger.LogInformation("Get list of purchase");
-        return _purchasesRepository.Purchases.Select(purchase => _mapper.Map<PurchaseGetDto>(purchase));
+        await using var context = await _contextFactory.CreateDbContextAsync();
+        _logger.LogInformation("Get purchases");
+        var purchases = await context.Purchases.ToListAsync();
+        return _mapper.Map<IEnumerable<PurchaseGetDto>>(purchases);
     }
 
     /// <summary>
     /// GET-запрос на получение элемента в соответствии с ID
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="id">PurchaseId</param>
     /// <returns>Ok(found purchase with input id)</returns>
     [HttpGet("{id}")]
-    public ActionResult<PurchaseGetDto> Get(int id)
+    public async Task<ActionResult<PurchaseGetDto>> Get(int id)
     {
-        var purchaseById = _purchasesRepository.Purchases.FirstOrDefault(purchaseById => purchaseById.Id == id);
-        if (purchaseById == null)
+        await using var context = await _contextFactory.CreateDbContextAsync();
+        var purchase = await context.Purchases.FirstOrDefaultAsync(purchase => purchase.Id == id);
+        if (purchase == null)
         {
-            _logger.LogInformation($"Not found purchase with id :{id}");
+            _logger.LogInformation("Not found purchase:{id}", id);
             return NotFound();
         }
         else
         {
-            _logger.LogInformation($"Get purchase with id :{id}");
-            return Ok(_mapper.Map<ProductGetDto>(purchaseById));
+            return Ok(_mapper.Map<PurchaseGetDto>(purchase));
         }
     }
 
     /// <summary>
     /// POST-запрос на добавление нового элемента в коллекцию
     /// </summary>
-    /// <param name="purchase"></param>
+    /// <param name="purchase"> New purchase</param>
     [HttpPost]
-    public void Post([FromBody] PurchasePostDto purchase)
+    public async void Post([FromBody] PurchasePostDto purchase)
     {
-        _logger.LogInformation("Add new purchase");
-        _purchasesRepository.Purchases.Add(_mapper.Map<Purchase>(purchase));
+        await using var context = await _contextFactory.CreateDbContextAsync();
+        await context.Purchases.AddAsync(_mapper.Map<Purchase>(purchase));
+        await context.SaveChangesAsync();
     }
 
     /// <summary>
     /// PUT-запрос на замену существующего элемента коллекции
     /// </summary>
-    /// <param name="id"></param>
-    /// <param name="purchaseToPut"></param>
-    /// <returns></returns> 
+    /// <param name="id">PurchaseId</param>
+    /// <param name="purchaseToPut">New purchase</param>
+    /// <returns>Update purchase by id</returns> 
     [HttpPut("{id}")]
-    public IActionResult Put(int id, [FromBody] PurchasePostDto purchaseToPut)
+    public async Task<IActionResult> Put(int id, [FromBody] PurchasePostDto purchaseToPut)
     {
-        var purchase = _purchasesRepository.Purchases.FirstOrDefault(purchase => purchase.Id == id);
+        await using var context = await _contextFactory.CreateDbContextAsync();
+        var purchase = await context.Purchases.FirstOrDefaultAsync(purchase => purchase.Id == id);
         if (purchase == null)
         {
-            _logger.LogInformation($"Not found purchase with id = {id}");
+            _logger.LogInformation("Not found purchase:{id}", id);
             return NotFound();
         }
         else
         {
-            _logger.LogInformation($"Update information purchase with id = {id}");
-            _mapper.Map<PurchasePostDto, Purchase>(purchaseToPut, purchase);
+            context.Update(_mapper.Map(purchaseToPut, purchase));
+            await context.SaveChangesAsync();
             return Ok();
         }
     }
@@ -103,21 +115,22 @@ public class PurchaseController : ControllerBase
     /// <summary>
     /// DELETE-запрос на удаление элемента из коллекции
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /// <param name="id">PurchaseId</param>
+    /// <returns>Delete purchase by id</returns>
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        var purchase = _purchasesRepository.Purchases.FirstOrDefault(purchase => purchase.Id == id);
+        await using var context = await _contextFactory.CreateDbContextAsync();
+        var purchase = await context.Purchases.FirstOrDefaultAsync(purchase => purchase.Id == id);
         if (purchase == null)
         {
-            _logger.LogInformation($"Not found purchase with id: {id}");
+            _logger.LogInformation("Not found purchase:{id}", id);
             return NotFound();
         }
         else
         {
-            _purchasesRepository.Purchases.Remove(purchase);
-            _logger.LogInformation($"Delete purchase with id: {id}");
+            context.Purchases.Remove(purchase);
+            await context.SaveChangesAsync();
             return Ok();
         }
     }

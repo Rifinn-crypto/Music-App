@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicMarketplace.Tests", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicMarketplace.Domain", "MusicMarketplace.Domain\MusicMarketplace.Domain.csproj", "{4E931F5B-860F-4F7E-90AF-991B6D5A048D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicMarket.Api", "MusicMarket.Api\MusicMarket.Api.csproj", "{6830737F-0F06-4FEC-B4C5-4067BE7FC5BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicMarket.Api", "MusicMarket.Api\MusicMarket.Api.csproj", "{328F2063-E967-486C-90A7-52E344F5396D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{4E931F5B-860F-4F7E-90AF-991B6D5A048D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E931F5B-860F-4F7E-90AF-991B6D5A048D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E931F5B-860F-4F7E-90AF-991B6D5A048D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6830737F-0F06-4FEC-B4C5-4067BE7FC5BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6830737F-0F06-4FEC-B4C5-4067BE7FC5BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6830737F-0F06-4FEC-B4C5-4067BE7FC5BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6830737F-0F06-4FEC-B4C5-4067BE7FC5BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{328F2063-E967-486C-90A7-52E344F5396D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{328F2063-E967-486C-90A7-52E344F5396D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{328F2063-E967-486C-90A7-52E344F5396D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{328F2063-E967-486C-90A7-52E344F5396D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

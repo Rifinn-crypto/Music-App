@@ -1,4 +1,7 @@
-﻿namespace MusicMarketplace.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MusicMarket;
 
 /// <summary>
 /// Покупка.
@@ -8,16 +11,35 @@ public class Purchase
     /// <summary>
     /// ID Покупки.
     /// </summary>
-    public int Id;
+    [Key]
+    public int Id { get; set; } = 0;
 
     /// <summary>
-    /// Список товаров.
+    /// ID Товара.
     /// </summary>
-    public List<Product> Products = new();
+
+    [ForeignKey("IdProduct")]
+    public int IdProduct { get; set; } = 0;
+
+    /// <summary>
+    /// Товар.
+    /// </summary>
+    public Product? Product { get; set; }
+
+    /// <summary>
+    /// ID Покупателя.
+    /// </summary>
+    [ForeignKey("IdCustomer")]
+    public int IdCustomer { get; set; } = 0;
+    /// <summary>
+    /// Покупатель.
+    /// </summary>
+    public Customer? Customer { get; set; }
 
     /// <summary>
     /// Дата совершения покупки.
     /// </summary>
+    [Required]
     public DateTime Date { get; set; }
 
     /// <summary>
@@ -28,10 +50,13 @@ public class Purchase
     /// <summary>
     /// Конструктор с параметрами. 
     /// </summary>
-    public Purchase(int id, List<Product> products, DateTime date, string customerName)
+    public Purchase(int id, int product, DateTime date, int customer)
     {
         Id = id;
-        Products = products;
+        IdProduct = product;
+        IdCustomer = customer;
         Date = date;
+
     }
+
 }

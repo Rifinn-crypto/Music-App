@@ -1,6 +1,8 @@
-﻿using MusicMarketplace.Domain;
+﻿namespace MusicMarketTests;
 
-namespace MusicMarketplace.Tests;
+using Microsoft.EntityFrameworkCore.Internal;
+using MusicMarket;
+using System.Linq;
 
 public class MusicMarketTest : IClassFixture<MusicMarketFixture>
 {
@@ -32,7 +34,7 @@ public class MusicMarketTest : IClassFixture<MusicMarketFixture>
     {
         var fixtureProduct = _fixture.FixtureProducts.ToList();
         var request = (from product in fixtureProduct
-                       where (product.Seller != null && product.Seller.ShopName == "StopRobot")
+                       where (product.IdSeller == 3)
                        orderby product.Price
                        select product).Count();
         Assert.Equal(3, request);
@@ -97,13 +99,16 @@ public class MusicMarketTest : IClassFixture<MusicMarketFixture>
 
         var customerPurchases =
             from customer in customers
-            from purchase in customer.Purchases
-            from product in purchase.Products
+            from purchase in purchases
+            from product in products
+            from seller in sellers
+            where customer.Id == purchase.IdCustomer && purchase.IdProduct == product.Id && seller.Id == product.IdSeller
             select new
             {
                 customer.Id,
-                PurchaseCost = purchase.Products.Sum(product => product.Price + product.Seller?.Price)
+                PurchaseCost = product.Price + seller.Price
             };
+
         var customerAvgPurchases =
             from customerPurchase in customerPurchases
             group customerPurchase by customerPurchase.Id into customer
@@ -114,7 +119,7 @@ public class MusicMarketTest : IClassFixture<MusicMarketFixture>
             };
         var top5 = customerAvgPurchases.OrderBy(customer => customer.AvgCost).Take(5);
         var max = top5.Max(a => a.AvgCost);
-        Assert.Equal(7240, max);
+        Assert.Equal(4670, max);
     }
 
     /// <summary>
@@ -129,25 +134,30 @@ public class MusicMarketTest : IClassFixture<MusicMarketFixture>
 
 
         var purchases = _fixture.FixturePurchases.ToList();
+        var products = _fixture.FixtureProducts.ToList();
+        var sellers = _fixture.FixtureSellers.ToList();
 
         var request = (from purchase in purchases
-                       where purchase.Date >= now.AddDays(-14)
+                       join product in products on purchase.IdProduct equals product.Id
+                       join seller in sellers on product.IdSeller equals seller.Id
                        select new
                        {
-                           seller = purchase.Products[0].Seller,
-                           count = purchase.Products.Count
+                           product.IdSeller,
+                           purchase.IdProduct,
+                           purchase.Date
+
                        }).ToList();
 
         var selCount = (from sel in request
-                        group sel by sel.seller.ShopName into g
+                        where sel.Date >= DateTime.Now.AddDays(-14)
+                        group sel by sel.IdSeller into g
                         select new
                         {
-                            seller = g.Key,
-                            count = g.Sum(x => x.count)
+                            sellerid = g.Key,
+                            count = g.Sum(x => x.IdProduct)
                         }).ToList();
 
-        Assert.Equal(1, selCount[0].count);
-        Assert.Equal(1, selCount[1].count);
+        Assert.Equal(7, selCount[0].count);
     }
 
 

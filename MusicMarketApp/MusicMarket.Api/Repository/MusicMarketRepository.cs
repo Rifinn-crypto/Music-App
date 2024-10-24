@@ -1,8 +1,10 @@
 ﻿using MusicMarket;
-using MusicMarketplace.Domain;
 
-namespace MusicMarket.Api.Repository;
+namespace MusicMarketServer.Repository;
 
+/// <summary>
+/// Сlass MusicMarketRepository
+/// </summary>
 public class MusicMarketRepository : IMusicMarketRepository
 {
 
@@ -11,6 +13,9 @@ public class MusicMarketRepository : IMusicMarketRepository
     private readonly List<Purchase> _purchases;
     private readonly List<Product> _products;
 
+    /// <summary>
+    /// MusicMarketRepository constructor
+    /// </summary>
     public MusicMarketRepository()
     {
         _products = new List<Product>();
@@ -102,23 +107,14 @@ public class MusicMarketRepository : IMusicMarketRepository
         _products[6].Status = "sold";
         _products[7].Status = "sold";
 
-        _products[0].Seller = new Seller(0, "Muzzona", "Russia", 300);
-        _products[1].Seller = new Seller(1, "Muzzona", "Russia", 300);
-        _products[2].Seller = new Seller(2, "Muzzona", "Russia", 300);
-        _products[3].Seller = new Seller(3, "Muzzona", "Russia", 300);
-        _products[4].Seller = new Seller(4, "Skifmusic", "UK", 750);
-        _products[5].Seller = new Seller(5, "StopRobot", "USA", 680);
-        _products[6].Seller = new Seller(6, "StopRobot", "USA", 680);
-        _products[7].Seller = new Seller(7, "StopRobot", "USA", 680);
-
-        _products[0].SellerId = 0;
-        _products[1].SellerId = 0;
-        _products[2].SellerId = 0;
-        _products[3].SellerId = 0;
-        _products[4].SellerId = 1;
-        _products[5].SellerId = 2;
-        _products[6].SellerId = 2;
-        _products[7].SellerId = 2;
+        _products[0].IdSeller = 1;
+        _products[1].IdSeller = 1;
+        _products[2].IdSeller = 1;
+        _products[3].IdSeller = 1;
+        _products[4].IdSeller = 2;
+        _products[5].IdSeller = 3;
+        _products[6].IdSeller = 3;
+        _products[7].IdSeller = 3;
 
 
         _sellers = new List<Seller>();
@@ -141,15 +137,6 @@ public class MusicMarketRepository : IMusicMarketRepository
         _sellers[1].Price = 750;
         _sellers[2].Price = 680;
 
-        _sellers[0].Products.Add(_products[0]);
-        _sellers[0].Products.Add(_products[1]);
-        _sellers[0].Products.Add(_products[2]);
-        _sellers[0].Products.Add(_products[3]);
-        _sellers[1].Products.Add(_products[4]);
-        _sellers[2].Products.Add(_products[5]);
-        _sellers[2].Products.Add(_products[6]);
-        _sellers[2].Products.Add(_products[7]);
-
 
         _purchases = new List<Purchase>();
         for (var i = 0; i < 5; ++i)
@@ -158,11 +145,17 @@ public class MusicMarketRepository : IMusicMarketRepository
             _purchases[i].Id = i;
         }
 
-        _purchases[0].Products.Add(_products[7]);
-        _purchases[1].Products.Add(_products[3]);
-        _purchases[2].Products.Add(_products[4]);
-        _purchases[3].Products.Add(_products[5]);
-        _purchases[4].Products.Add(_products[6]);
+        _purchases[0].IdProduct = 7;
+        _purchases[1].IdProduct = 3;
+        _purchases[2].IdProduct = 4;
+        _purchases[3].IdProduct = 5;
+        _purchases[4].IdProduct = 6;
+
+        _purchases[0].IdCustomer = 0;
+        _purchases[1].IdCustomer = 1;
+        _purchases[2].IdCustomer = 2;
+        _purchases[3].IdCustomer = 3;
+        _purchases[4].IdCustomer = 4;
 
         _purchases[0].Date = DateTime.Parse("2023/04/11");
         _purchases[1].Date = DateTime.Parse("2023/04/4");
@@ -171,7 +164,7 @@ public class MusicMarketRepository : IMusicMarketRepository
         _purchases[4].Date = DateTime.Parse("2023/04/11");
 
         _customers = new List<Customer>();
-        for (var i = 0; i < 5; ++i)
+        for (var i = 1; i < 6; ++i)
         {
             _customers.Add(new Customer());
             _customers[i].Id = i;
@@ -196,16 +189,23 @@ public class MusicMarketRepository : IMusicMarketRepository
         _customers[3].Address = "8, avenue de Coste 24798 Costa";
         _customers[4].Address = "179817, Ulyanovsk region, Krasnogorsk, Lenin Square, 23";
 
-        _customers[0].Purchases.Add(_purchases[0]);
-        _customers[1].Purchases.Add(_purchases[1]);
-        _customers[2].Purchases.Add(_purchases[2]);
-        _customers[3].Purchases.Add(_purchases[3]);
-        _customers[4].Purchases.Add(_purchases[4]);
     }
 
+    /// <summary>
+    /// Сollection of customers 
+    /// </summary>
     public List<Customer> Customers => _customers;
+    /// <summary>
+    ///Сollection of sellers 
+    /// </summary>
     public List<Seller> Sellers => _sellers;
+    /// <summary>
+    /// Сollection of purchases  
+    /// </summary>
     public List<Purchase> Purchases => _purchases;
+    /// <summary>
+    /// UСollection of products 
+    /// </summary>
     public List<Product> Products => _products;
 
 }

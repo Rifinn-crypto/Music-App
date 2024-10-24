@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MusicMarket;
 using MusicMarket.Api.Dto;
-using MusicMarket.Api.Repository;
-using Microsoft.Extensions.Logging;
-using MusicMarketplace.Domain;
+using MusicMarketplace;
+using MusicMarketServer.Dto;
 
-
-namespace MusicMarket.Api.Controllers;
+namespace MusicMarketServer.Controllers;
 
 /// <summary>
 /// Контроллер товаров
@@ -20,17 +20,24 @@ public class ProductController : ControllerBase
     /// </summary>
     private readonly ILogger<ProductController> _logger;
     /// <summary>
-    /// Хранение репозитория
+    /// Хранение DbContext
     /// </summary>
-    private readonly IMusicMarketRepository _productsRepository;
+    private readonly IDbContextFactory<MusicMarketDbContext> _contextFactory;
     /// <summary>
     /// Хранение маппера
     /// </summary>
     private readonly IMapper _mapper;
-    public ProductController(ILogger<ProductController> logger, IMusicMarketRepository productsRepository, IMapper mapper)
+
+    /// <summary>
+    /// Конструктор контроллера product
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="contextFactory"></param>
+    /// <param name="mapper"></param>
+    public ProductController(ILogger<ProductController> logger, IDbContextFactory<MusicMarketDbContext> contextFactory, IMapper mapper)
     {
         _logger = logger;
-        _productsRepository = productsRepository;
+        _contextFactory = contextFactory;
         _mapper = mapper;
     }
 
@@ -38,65 +45,69 @@ public class ProductController : ControllerBase
     /// <summary>
     /// GET-запрос на получение всех товаров коллекции
     /// </summary>
-    /// <returns>list of products</returns>
+    /// <returns>Returns a list of products</returns>
     [HttpGet]
-    public IEnumerable<ProductGetDto> Get()
+    public async Task<IEnumerable<ProductGetDto>> Get()
     {
-        _logger.LogInformation("Get list of products");
-        return _productsRepository.Products.Select(product => _mapper.Map<ProductGetDto>(product));
+        await using var context = await _contextFactory.CreateDbContextAsync();
+        _logger.LogInformation("Get products");
+        var products = await context.Products.ToListAsync();
+        return _mapper.Map<IEnumerable<ProductGetDto>>(products);
     }
 
     /// <summary>
     /// GET-запрос на получение элемента в соответствии с ID
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns>Product with input id</returns>
+    /// <param name="id">ProductId</param>
+    /// <returns>Returns product with input id</returns>
     [HttpGet("{id}")]
-    public ActionResult<ProductGetDto> Get(int id)
+    public async Task<ActionResult<ProductGetDto>> Get(int id)
     {
-        var productById = _productsRepository.Products.FirstOrDefault(product => product.Id == id);
-        if (productById == null)
+        await using var context = await _contextFactory.CreateDbContextAsync();
+        var product = await context.Products.FirstOrDefaultAsync(product => product.Id == id);
+        if (product == null)
         {
-            _logger.LogInformation($"Not found product with id: {id}");
+            _logger.LogInformation("Not found product:{id}", id);
             return NotFound();
         }
         else
         {
-            _logger.LogInformation($"Get product with id: {id}");
-            return Ok(_mapper.Map<ProductGetDto>(productById));
+            return Ok(_mapper.Map<ProductGetDto>(product));
         }
     }
 
     /// <summary>
     /// POST-запрос на добавление нового элемента в коллекцию
     /// </summary>
-    /// <param name="product"></param>
+    /// <param name="product">New product</param>
     [HttpPost]
-    public void Post([FromBody] ProductPostDto product)
+    public async void Post([FromBody] ProductPostDto product)
     {
-        _logger.LogInformation("Add new product");
-        _productsRepository.Products.Add(_mapper.Map<Product>(product));
+        await using var context = await _contextFactory.CreateDbContextAsync();
+        await context.Products.AddAsync(_mapper.Map<Product>(product));
+        await context.SaveChangesAsync();
     }
 
     /// <summary>
     /// PUT-запрос на замену существующего элемента коллекции
     /// </summary>
-    /// <param name="id"></param>
-    /// <param name="productToPut"></param>
+    /// <param name="id">ProductId</param>
+    /// <param name="productToPut">New product</param>
     /// <returns>Ok()</returns>
     [HttpPut("{id}")]
-    public IActionResult Put(int id, [FromBody] ProductPostDto productToPut)
+    public async Task<IActionResult> Put(int id, [FromBody] ProductPostDto productToPut)
     {
-        var product = _productsRepository.Customers.FirstOrDefault(product => product.Id == id);
+        await using var context = await _contextFactory.CreateDbContextAsync();
+        var product = await context.Products.FirstOrDefaultAsync(product => product.Id == id);
         if (product == null)
         {
-            _logger.LogInformation($"Not found product with id = {id}");
+            _logger.LogInformation("Not found product:{id}", id);
             return NotFound();
         }
         else
         {
-            _logger.LogInformation($"Update information product with id = {id}");
-            _mapper.Map<ProductPostDto, Customer>(productToPut, product);
+            context.Update(_mapper.Map(productToPut, product));
+            await context.SaveChangesAsync();
             return Ok();
         }
     }
@@ -104,21 +115,22 @@ public class ProductController : ControllerBase
     /// <summary>
     /// DELETE-запрос на удаление элемента из коллекции
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="id">ProductId</param>
     /// <returns>Ok()</returns>
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        var product = _productsRepository.Products.FirstOrDefault(product => product.Id == id);
+        await using var context = await _contextFactory.CreateDbContextAsync();
+        var product = await context.Products.FirstOrDefaultAsync(product => product.Id == id);
         if (product == null)
         {
-            _logger.LogInformation($"Not found product with id: {id}");
+            _logger.LogInformation("Not found product:{id}", id);
             return NotFound();
         }
         else
         {
-            _productsRepository.Products.Remove(product);
-            _logger.LogInformation($"Delete product with id: : {id}");
+            context.Products.Remove(product);
+            await context.SaveChangesAsync();
             return Ok();
         }
     }
