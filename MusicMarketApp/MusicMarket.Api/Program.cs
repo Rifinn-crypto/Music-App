@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using MusicMarket.Api.Repository;
-using MusicMarket.Api;
-using System.Reflection;
+using MusicMarket.Api; // Импорт пространства имен
+using Microsoft.AspNetCore.Mvc;
+using WebApplication;
 
 var builder = WebApplication.CreateBuilder(args);
 
