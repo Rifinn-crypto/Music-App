@@ -1,7 +1,7 @@
 ﻿namespace MusicMarketTests;
 
 using Microsoft.EntityFrameworkCore.Internal;
-using MusicMarket;
+using MusicMarketplace.Domain;
 using System.Linq;
 
 public class MusicMarketTest : IClassFixture<MusicMarketFixture>
