@@ -1,6 +1,6 @@
 ﻿namespace MusicMarketTests;
 
-using MusicMarket;
+using MusicMarketplace.Domain;
 using System;
 using System.Collections.Generic;
 
