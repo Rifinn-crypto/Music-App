@@ -1,6 +1,6 @@
 ﻿namespace MusicMarketTests;
 
-using MusicMarketplace.Domain;
+using MusicMarket;
 using System;
 using System.Collections.Generic;
 
@@ -205,11 +205,11 @@ public class MusicMarketFixture
             purchase3.IdProduct = 4;
             purchase4.IdProduct = 5;
 
-            purchase0.Date = new DateTime(2024, 10, 12);
-            purchase1.Date = new DateTime(2024, 10, 14);
-            purchase2.Date = new DateTime(2024, 10, 12);
-            purchase0.Date = new DateTime(2024, 09, 10);
-            purchase0.Date = new DateTime(2024, 10, 11);
+            purchase0.Date = DateTime.Parse("2024/10/21");
+            purchase1.Date = DateTime.Parse("2024/10/20");
+            purchase2.Date = DateTime.Parse("2024/10/19");
+            purchase3.Date = DateTime.Parse("2024/10/14");
+            purchase4.Date = DateTime.Parse("2024/10/17");
 
             purchases.Add(purchase0);
             purchases.Add(purchase1);

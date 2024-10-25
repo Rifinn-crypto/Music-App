@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MusicMarketplace.Domain;
+using MusicMarket;
 
 namespace MusicMarketplace;
 /// <summary>
@@ -64,13 +64,13 @@ public class MusicMarketDbContext : DbContext
 
         modelBuilder.Entity<Purchase>().HasData(new List<Purchase>
         {
-            new Purchase { Id = 1, IdProduct = 8,IdCustomer = 1, Date = DateTime.Parse("2023/05/10")},
-            new Purchase { Id = 2, IdProduct = 4,IdCustomer= 2, Date = DateTime.Parse("2023/05/4") },
-            new Purchase { Id = 3, IdProduct = 5,IdCustomer = 3, Date = DateTime.Parse("2023/05/17") },
-            new Purchase { Id = 4, IdProduct = 6,IdCustomer = 4, Date = DateTime.Parse("2023/05/1") },
-            new Purchase { Id = 5, IdProduct = 7,IdCustomer = 5, Date = DateTime.Parse("2023/05/16") },
-            new Purchase { Id = 6, IdProduct = 9,IdCustomer = 6, Date = DateTime.Parse("2023/05/9") },
-            new Purchase { Id = 7, IdProduct = 10,IdCustomer = 7, Date = DateTime.Parse("2023/05/19") }
+            new Purchase { Id = 1, IdProduct = 8,IdCustomer = 1, Date = DateTime.Parse("2024/10/12")},
+            new Purchase { Id = 2, IdProduct = 4,IdCustomer= 2, Date = DateTime.Parse("2024/10/17") },
+            new Purchase { Id = 3, IdProduct = 5,IdCustomer = 3, Date = DateTime.Parse("2024/10/19") },
+            new Purchase { Id = 4, IdProduct = 6,IdCustomer = 4, Date = DateTime.Parse("2024/10/20") },
+            new Purchase { Id = 5, IdProduct = 7,IdCustomer = 5, Date = DateTime.Parse("2024/10/22") },
+            new Purchase { Id = 6, IdProduct = 9,IdCustomer = 6, Date = DateTime.Parse("2024/10/23") },
+            new Purchase { Id = 7, IdProduct = 10,IdCustomer = 7, Date = DateTime.Parse("2024/10/16") }
         });
 
         modelBuilder.Entity<Customer>().HasData(new List<Customer>

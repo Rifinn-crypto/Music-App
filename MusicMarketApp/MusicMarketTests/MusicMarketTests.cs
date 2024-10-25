@@ -1,7 +1,7 @@
 ﻿namespace MusicMarketTests;
 
 using Microsoft.EntityFrameworkCore.Internal;
-using MusicMarketplace.Domain;
+using MusicMarket;
 using System.Linq;
 
 public class MusicMarketTest : IClassFixture<MusicMarketFixture>
@@ -147,7 +147,6 @@ public class MusicMarketTest : IClassFixture<MusicMarketFixture>
                            purchase.Date
 
                        }).ToList();
-
         var selCount = (from sel in request
                         where sel.Date >= DateTime.Now.AddDays(-14)
                         group sel by sel.IdSeller into g
@@ -157,8 +156,18 @@ public class MusicMarketTest : IClassFixture<MusicMarketFixture>
                             count = g.Sum(x => x.IdProduct)
                         }).ToList();
 
-        Assert.Equal(7, selCount[0].count);
+        // Проверка на пустой список
+        if (selCount.Count > 0)
+        {
+            // Теперь можно безопасно получить доступ к первому элементу
+            Assert.Equal(7, selCount[0].count);
+        }
+        else
+        {
+            // Обработка случая, когда список selCount пуст
+            Assert.True(false, "Нет данных о продажах за последние две недели.");
+        }
+
+
     }
-
-
 }

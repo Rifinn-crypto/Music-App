@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MusicMarketplace.Domain;
+namespace MusicMarket;
 
 /// <summary>
 /// Покупатель.

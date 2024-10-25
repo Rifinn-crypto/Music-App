@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MusicMarketplace.Domain;
+using MusicMarket;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MusicMarketServer.Dto;
