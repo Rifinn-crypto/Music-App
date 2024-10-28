@@ -17,4 +17,8 @@
     <ProjectReference Include="..\MusicMarketplace.Domain\MusicMarketplace.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
 </Project>

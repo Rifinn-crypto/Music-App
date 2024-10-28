@@ -181,13 +181,11 @@ public class MusicMarketFixture
             var purchase4 = new Purchase();
             var purchase3 = new Purchase();
 
-
             purchase0.Id = 1;
             purchase1.Id = 2;
             purchase2.Id = 3;
             purchase3.Id = 4;
             purchase4.Id = 5;
-
 
             purchase0.IdProduct = 7;
             purchase1.IdProduct = 3;
@@ -233,7 +231,6 @@ public class MusicMarketFixture
             customer3.Id = 4;
             customer4.Id = 5;
 
-
             customer0.Name = "Tikhonov Mark Sergeevich";
             customer1.Name = "Klimova Sofya Dmitrievna";
             customer2.Name = "Jason Knight";
@@ -251,7 +248,6 @@ public class MusicMarketFixture
             customer2.Address = "9297 Graham Spur Apt. 585 Gaylordbury, LA 91851";
             customer3.Address = "8, avenue de Coste 24798 Costa";
             customer4.Address = "179817, Ulyanovsk region, Krasnogorsk, Lenin Square, 23";
-
 
             customers.Add(customer0);
             customers.Add(customer1);
