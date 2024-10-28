@@ -204,7 +204,7 @@ public class MusicMarketRepository : IMusicMarketRepository
     /// </summary>
     public List<Purchase> Purchases => _purchases;
     /// <summary>
-    /// UСollection of products 
+    /// Сollection of products 
     /// </summary>
     public List<Product> Products => _products;
 

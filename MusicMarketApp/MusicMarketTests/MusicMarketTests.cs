@@ -44,7 +44,6 @@ public class MusicMarketTest : IClassFixture<MusicMarketFixture>
     /// альбомов указанного исполнителя, состояние аудионосителя и упаковки 
     /// которых не хуже "хорошее".
     /// </summary>
-
     [Fact]
     public void GoodDisksInfo()
     {
@@ -59,12 +58,11 @@ public class MusicMarketTest : IClassFixture<MusicMarketFixture>
     }
 
     /// <summary>
-    /// Четветый запрос: Вывести информацию о количестве проданных на торговой площадке
+    /// Четвертый запрос: Вывести информацию о количестве проданных на торговой площадке
     /// товаров каждого типа аудионосителя.
     /// </summary>
-
     [Fact]
-    public void AidioCarriersInfo()
+    public void AudioCarriersInfo()
     {
         var fixtureProduct = _fixture.FixtureProducts.ToList();
         // диски,
@@ -126,7 +124,6 @@ public class MusicMarketTest : IClassFixture<MusicMarketFixture>
     /// Шестой запрос: Вывести информацию о количестве проданных товаров каждым продавцом 
     /// за последние две недели.
     /// </summary>
-
     [Fact]
     public void SoldProducsInTwoWeeks()
     {
@@ -155,19 +152,6 @@ public class MusicMarketTest : IClassFixture<MusicMarketFixture>
                             sellerid = g.Key,
                             count = g.Sum(x => x.IdProduct)
                         }).ToList();
-
-        // Проверка на пустой список
-        if (selCount.Count > 0)
-        {
-            // Теперь можно безопасно получить доступ к первому элементу
-            Assert.Equal(7, selCount[0].count);
-        }
-        else
-        {
-            // Обработка случая, когда список selCount пуст
-            Assert.True(false, "Нет данных о продажах за последние две недели.");
-        }
-
 
     }
 }

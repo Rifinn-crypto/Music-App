@@ -140,8 +140,6 @@ public class MusicMarketFixture
     {
         get
         {
-            var products = FixtureProducts;
-
             var sellers = new List<Seller>();
             var seller0 = new Seller();
             var seller1 = new Seller();
@@ -175,8 +173,6 @@ public class MusicMarketFixture
     {
         get
         {
-            var products = FixtureProducts;
-
             var purchases = new List<Purchase>();
 
             var purchase0 = new Purchase();
@@ -224,7 +220,6 @@ public class MusicMarketFixture
     {
         get
         {
-            var purchases = FixturePurchases;
             var customers = new List<Customer>();
             var customer0 = new Customer();
             var customer1 = new Customer();
