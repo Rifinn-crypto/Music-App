@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MusicMarketplace.Domain;
-using MusicMarketServer.Dto;
+using MusicMarket.Api.Dto;
 
 namespace MusicMarketServer;
 

@@ -1,6 +1,6 @@
 ﻿using MusicMarketplace.Domain;
 
-namespace MusicMarketServer.Repository;
+namespace MusicMarket.Api.Repository;
 /// <summary>
 /// Make interface Music Market repository
 /// </summary>

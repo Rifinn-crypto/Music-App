@@ -2,7 +2,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using MusicMarketplace;
 using MusicMarketServer;
-using MusicMarketServer.Repository;
+using MusicMarket.Api.Repository;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);

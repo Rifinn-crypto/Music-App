@@ -1,4 +1,4 @@
-﻿namespace MusicMarketServer.Dto;
+﻿namespace MusicMarket.Api.Dto;
 /// <summary>
 /// Информация о покупке
 /// </summary>

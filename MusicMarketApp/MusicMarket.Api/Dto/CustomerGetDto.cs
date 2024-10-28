@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace MusicMarketServer.Dto;
+﻿namespace MusicMarket.Api.Dto;
 /// <summary>
 /// Информация о покупателе
 /// </summary>

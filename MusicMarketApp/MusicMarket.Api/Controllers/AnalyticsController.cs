@@ -2,10 +2,10 @@
 using MusicMarketplace.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MusicMarketServer.Dto;
+using MusicMarket.Api.Dto;
 using MusicMarketplace;
 
-namespace MusicMarketServer.Controllers;
+namespace MusicMarket.Api.Controllers;
 
 /// <summary>
 /// Контроллер запросов
