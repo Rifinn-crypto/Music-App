@@ -152,6 +152,5 @@ public class MusicMarketTest : IClassFixture<MusicMarketFixture>
                             sellerid = g.Key,
                             count = g.Sum(x => x.IdProduct)
                         }).ToList();
-
     }
 }
