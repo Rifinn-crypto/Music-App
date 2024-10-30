@@ -57,21 +57,20 @@ public class MusicMarketDbContext : DbContext
 
         modelBuilder.Entity<Seller>().HasData(new List<Seller>
         {
-            new Seller { Id = 1, ShopName = "Muzzona", CountryOfDelivery = "Russia", Price = 300},
-            new Seller { Id = 2, ShopName = "Skifmusic", CountryOfDelivery = "UK", Price = 750},
-            new Seller { Id = 3, ShopName = "StopRobot", CountryOfDelivery = "USA", Price = 680}
-
+            new() { Id = 1, ShopName = "Muzzona", CountryOfDelivery = "Russia", Price = 300 },
+            new() { Id = 2, ShopName = "Skifmusic", CountryOfDelivery = "UK", Price = 750 },
+            new() { Id = 3, ShopName = "StopRobot", CountryOfDelivery = "USA", Price = 680 }
         });
 
         modelBuilder.Entity<Purchase>().HasData(new List<Purchase>
         {
-            new Purchase { Id = 1, IdProduct = 8,IdCustomer = 1, Date = DateTime.Parse("2024/10/12")},
-            new Purchase { Id = 2, IdProduct = 4,IdCustomer= 2, Date = DateTime.Parse("2024/10/17") },
-            new Purchase { Id = 3, IdProduct = 5,IdCustomer = 3, Date = DateTime.Parse("2024/10/19") },
-            new Purchase { Id = 4, IdProduct = 6,IdCustomer = 4, Date = DateTime.Parse("2024/10/20") },
-            new Purchase { Id = 5, IdProduct = 7,IdCustomer = 5, Date = DateTime.Parse("2024/10/22") },
-            new Purchase { Id = 6, IdProduct = 9,IdCustomer = 6, Date = DateTime.Parse("2024/10/23") },
-            new Purchase { Id = 7, IdProduct = 10,IdCustomer = 7, Date = DateTime.Parse("2024/10/16") }
+            new() { Id = 1, IdProduct = 8,IdCustomer = 1, Date = DateTime.Parse("2024/10/12")},
+            new() { Id = 2, IdProduct = 4,IdCustomer= 2, Date = DateTime.Parse("2024/10/17") },
+            new() { Id = 3, IdProduct = 5,IdCustomer = 3, Date = DateTime.Parse("2024/10/19") },
+            new() { Id = 4, IdProduct = 6,IdCustomer = 4, Date = DateTime.Parse("2024/10/20") },
+            new() { Id = 5, IdProduct = 7,IdCustomer = 5, Date = DateTime.Parse("2024/10/22") },
+            new() { Id = 6, IdProduct = 9,IdCustomer = 6, Date = DateTime.Parse("2024/10/23") },
+            new() { Id = 7, IdProduct = 10,IdCustomer = 7, Date = DateTime.Parse("2024/10/16") }
         });
 
         modelBuilder.Entity<Customer>().HasData(new List<Customer>
