@@ -7,7 +7,7 @@ public class SellerGetDto
     /// <summary>
     /// ID Продавца.
     /// </summary>
-    public int Id { get; set; } = 0;
+    public int Id { get; set; }
 
     /// <summary>
     /// Название магазина.
@@ -22,5 +22,5 @@ public class SellerGetDto
     /// <summary>
     /// Стоимость доставки за 1 товар.
     /// </summary>
-    public double Price { get; set; } = 0;
+    public double Price { get; set; }
 }

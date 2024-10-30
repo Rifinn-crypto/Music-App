@@ -7,13 +7,13 @@ public class PurchasePostDto
     /// <summary>
     /// Дата совершения покупки.
     /// </summary>
-    public DateTime Date { get; set; } = new DateTime();
+    public DateTime Date { get; set; }
     /// <summary>
     /// ID Товара.
     /// </summary>
-    public int IdProduct { get; set; } = 0;
+    public int IdProduct { get; set; }
     /// <summary>
     /// ID Покупателя.
     /// </summary>
-    public int IdCustomer { get; set; } = 0;
+    public int IdCustomer { get; set; }
 }

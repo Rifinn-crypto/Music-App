@@ -7,7 +7,7 @@ public class ProductGetDto
     /// <summary>
     /// ID Товара.
     /// </summary>
-    public int Id { get; set; } = 0;
+    public int Id { get; set; }
 
     /// <summary>
     /// Тип аудионосителя: диск|кассета|виниловая пластинка.
@@ -57,5 +57,5 @@ public class ProductGetDto
     /// <summary>
     /// ID Продавца.
     /// </summary>
-    public int SellerId { get; set; } = 0;
+    public int SellerId { get; set; }
 }
