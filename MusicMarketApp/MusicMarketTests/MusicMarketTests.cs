@@ -1,7 +1,5 @@
 ﻿namespace MusicMarket.Tests;
 
-using Microsoft.EntityFrameworkCore.Internal;
-using MusicMarketplace.Domain;
 using System.Linq;
 
 public class MusicMarketTest : IClassFixture<MusicMarketFixture>
@@ -125,7 +123,7 @@ public class MusicMarketTest : IClassFixture<MusicMarketFixture>
     /// за последние две недели.
     /// </summary>
     [Fact]
-    public void SoldProducsInTwoWeeks()
+    public void SoldProductsInTwoWeeks()
     {
         var now = DateTime.Now;
 

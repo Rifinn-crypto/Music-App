@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MusicMarketplace.Domain;
 
-namespace MusicMarketplace;
+namespace MusicMarketplace.Db;
 /// <summary>
 /// Class MusicMarketDbContext is used to work with database
 /// </summary>
@@ -40,18 +40,18 @@ public class MusicMarketDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         var products = new List<Product>
-{
-    new() { Id = 1, Name = "The Curse of the Seas", TypeOfCarrier = "cassette", PublicationType = "album", Creator = "Aria", MadeIn = "Russia", MediaStatus = "bad", PackagingCondition = "satisfactory", Price = 1750, Status = "sale", IdSeller = 0 },
-    new() { Id = 2, Name = "Decorative and applied art", TypeOfCarrier = "disc", PublicationType = "album", Creator = "Monetochka", MadeIn = "Russia", MediaStatus = "new", PackagingCondition = "new", Price = 1890, Status = "sale", IdSeller = 0 },
-    new() { Id = 3, Name = "Aurora", TypeOfCarrier = "vinyl record", PublicationType = "album", Creator = "Leningrad", MadeIn = "Russia", MediaStatus = "excellent", PackagingCondition = "good", Price = 3750, Status = "sold", IdSeller = 0 },
-    new() { Id = 4, Name = "Forgive Me My Love", TypeOfCarrier = "disc", PublicationType = "single", Creator = "Zemfira", MadeIn = "Russia", MediaStatus = "satisfactory", PackagingCondition = "bad", Price = 1190, Status = "sold", IdSeller = 0 },
-    new() { Id = 5, Name = "Smoke + Mirrors", TypeOfCarrier = "cassette", PublicationType = "album", Creator = "Imagine Dragons", MadeIn = "USA", MediaStatus = "excellent", PackagingCondition = "excellent", Price = 6490, Status = "sold", IdSeller = 1 },
-    new() { Id = 6, Name = "Let Go", TypeOfCarrier = "vinyl record", PublicationType = "single", Creator = "Avril Lavigne", MadeIn = "UK & Europe", MediaStatus = "good", PackagingCondition = "excellent", Price = 5990, Status = "sold", IdSeller = 2 },
-    new() { Id = 7, Name = "PWR/UP", TypeOfCarrier = "cassette", PublicationType = "album", Creator = "AC/DC", MadeIn = "EU", MediaStatus = "excellent", PackagingCondition = "good", Price = 3990, Status = "sold", IdSeller = 2 },
-    new() { Id = 8, Name = "Rush!", TypeOfCarrier = "disc", PublicationType = "album", Creator = "Maneskin", MadeIn = "UK & Europe", MediaStatus = "new", PackagingCondition = "new", Price = 4990, Status = "sold", IdSeller = 2 },
-    new() { Id = 9, Name = "Power and Wind", TypeOfCarrier = "cassette", PublicationType = "album", Creator = "AC/DC", MadeIn = "EU", MediaStatus = "excellent", PackagingCondition = "good", Price = 4990, Status = "sold", IdSeller = 2 },
-    new() { Id = 10, Name = "GO!", TypeOfCarrier = "disc", PublicationType = "album", Creator = "Maneskin", MadeIn = "UK & Europe", MediaStatus = "new", PackagingCondition = "new", Price = 5990, Status = "sold", IdSeller = 2 }
-};
+        {
+            new() { Id = 1, Name = "The Curse of the Seas", TypeOfCarrier = "cassette", PublicationType = "album", Creator = "Aria", MadeIn = "Russia", MediaStatus = "bad", PackagingCondition = "satisfactory", Price = 1750, Status = "sale", IdSeller = 0 },
+            new() { Id = 2, Name = "Decorative and applied art", TypeOfCarrier = "disc", PublicationType = "album", Creator = "Monetochka", MadeIn = "Russia", MediaStatus = "new", PackagingCondition = "new", Price = 1890, Status = "sale", IdSeller = 0 },
+            new() { Id = 3, Name = "Aurora", TypeOfCarrier = "vinyl record", PublicationType = "album", Creator = "Leningrad", MadeIn = "Russia", MediaStatus = "excellent", PackagingCondition = "good", Price = 3750, Status = "sold", IdSeller = 0 },
+            new() { Id = 4, Name = "Forgive Me My Love", TypeOfCarrier = "disc", PublicationType = "single", Creator = "Zemfira", MadeIn = "Russia", MediaStatus = "satisfactory", PackagingCondition = "bad", Price = 1190, Status = "sold", IdSeller = 0 },
+            new() { Id = 5, Name = "Smoke + Mirrors", TypeOfCarrier = "cassette", PublicationType = "album", Creator = "Imagine Dragons", MadeIn = "USA", MediaStatus = "excellent", PackagingCondition = "excellent", Price = 6490, Status = "sold", IdSeller = 1 },
+            new() { Id = 6, Name = "Let Go", TypeOfCarrier = "vinyl record", PublicationType = "single", Creator = "Avril Lavigne", MadeIn = "UK & Europe", MediaStatus = "good", PackagingCondition = "excellent", Price = 5990, Status = "sold", IdSeller = 2 },
+            new() { Id = 7, Name = "PWR/UP", TypeOfCarrier = "cassette", PublicationType = "album", Creator = "AC/DC", MadeIn = "EU", MediaStatus = "excellent", PackagingCondition = "good", Price = 3990, Status = "sold", IdSeller = 2 },
+            new() { Id = 8, Name = "Rush!", TypeOfCarrier = "disc", PublicationType = "album", Creator = "Maneskin", MadeIn = "UK & Europe", MediaStatus = "new", PackagingCondition = "new", Price = 4990, Status = "sold", IdSeller = 2 },
+            new() { Id = 9, Name = "Power and Wind", TypeOfCarrier = "cassette", PublicationType = "album", Creator = "AC/DC", MadeIn = "EU", MediaStatus = "excellent", PackagingCondition = "good", Price = 4990, Status = "sold", IdSeller = 2 },
+            new() { Id = 10, Name = "GO!", TypeOfCarrier = "disc", PublicationType = "album", Creator = "Maneskin", MadeIn = "UK & Europe", MediaStatus = "new", PackagingCondition = "new", Price = 5990, Status = "sold", IdSeller = 2 }
+        };
 
         modelBuilder.Entity<Product>().HasData(products);
 

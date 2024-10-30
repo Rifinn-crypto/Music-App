@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MusicMarketplace.Domain;
-using MusicMarketplace;
 using MusicMarket.Api.Dto;
+using MusicMarketplace.Db;
 
 namespace MusicMarket.Api.Controllers;
 
