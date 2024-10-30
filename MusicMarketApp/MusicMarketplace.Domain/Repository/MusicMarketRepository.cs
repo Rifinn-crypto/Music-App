@@ -5,7 +5,6 @@
 /// </summary>
 public class MusicMarketRepository : IMusicMarketRepository
 {
-
     private readonly List<Customer> _customers;
     private readonly List<Seller> _sellers;
     private readonly List<Purchase> _purchases;
@@ -114,7 +113,6 @@ public class MusicMarketRepository : IMusicMarketRepository
         _products[6].IdSeller = 3;
         _products[7].IdSeller = 3;
 
-
         _sellers = new List<Seller>();
 
         for (var i = 0; i < 3; ++i)
@@ -167,7 +165,6 @@ public class MusicMarketRepository : IMusicMarketRepository
             _customers.Add(new Customer());
             _customers[i].Id = i;
         }
-
 
         _customers[0].Name = "Tikhonov Mark Sergeevich";
         _customers[1].Name = "Klimova Sofya Dmitrievna";

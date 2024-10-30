@@ -39,7 +39,6 @@ public class ProductController : ControllerBase
         _mapper = mapper;
     }
 
-
     /// <summary>
     /// GET-запрос на получение всех товаров коллекции
     /// </summary>

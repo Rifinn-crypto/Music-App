@@ -90,7 +90,6 @@ public class CustomerController : ControllerBase
 
     }
 
-
     /// <summary>
     /// PUT-запрос на замену существующего элемента коллекции
     /// </summary>

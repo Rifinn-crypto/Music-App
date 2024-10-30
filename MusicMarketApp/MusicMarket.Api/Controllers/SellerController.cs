@@ -53,7 +53,6 @@ public class SellerController : ControllerBase
         return _mapper.Map<IEnumerable<SellerGetDto>>(sellers);
     }
 
-
     /// <summary>
     /// GET-запрос на получение элемента в соответствии с ID
     /// </summary>
@@ -74,7 +73,6 @@ public class SellerController : ControllerBase
             return Ok(_mapper.Map<SellerGetDto>(seller));
         }
     }
-
 
     /// <summary>
     /// POST-запрос на добавление нового элемента в коллекцию
