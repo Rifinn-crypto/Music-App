@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace MusicMarketplace.Tests;
+﻿namespace MusicMarketplace.Tests;
 
 public class MusicMarketTest : IClassFixture<MusicMarketFixture>
 {
