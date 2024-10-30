@@ -1,9 +1,8 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using MusicMarketplace.Db;
-using MusicMarket.Appi.MappingProfile;
+using MusicMarket.Api.MappingProfile;
 using MusicMarket.Api.Repository;
-using System.Reflection;
+using MusicMarketplace.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 

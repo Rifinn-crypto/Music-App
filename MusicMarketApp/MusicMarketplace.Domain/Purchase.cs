@@ -12,14 +12,14 @@ public class Purchase
     /// ID Покупки.
     /// </summary>
     [Key]
-    public int Id { get; set; } = 0;
+    public int Id { get; set; }
 
     /// <summary>
     /// ID Товара.
     /// </summary>
 
     [ForeignKey("IdProduct")]
-    public int IdProduct { get; set; } = 0;
+    public int IdProduct { get; set; }
 
     /// <summary>
     /// Товар.
@@ -30,7 +30,7 @@ public class Purchase
     /// ID Покупателя.
     /// </summary>
     [ForeignKey("IdCustomer")]
-    public int IdCustomer { get; set; } = 0;
+    public int IdCustomer { get; set; }
     /// <summary>
     /// Покупатель.
     /// </summary>

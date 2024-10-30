@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MusicMarketplace.Domain;
 using MusicMarket.Api.Dto;
-using MusicMarketplace.Db;
 
 namespace MusicMarket.Api.Controllers;
 

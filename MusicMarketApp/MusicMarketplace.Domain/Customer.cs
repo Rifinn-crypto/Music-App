@@ -11,7 +11,7 @@ public class Customer
     /// ID Покупателя.
     /// </summary>
     [Key]
-    public int Id { get; set; } = 0;
+    public int Id { get; set; }
 
     /// <summary>
     /// Ф.И.О.

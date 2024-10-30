@@ -2,7 +2,7 @@
 using MusicMarketplace.Domain;
 using MusicMarket.Api.Dto;
 
-namespace MusicMarket.Appi.MappingProfile;
+namespace MusicMarket.Api.MappingProfile;
 
 /// <summary>
 /// Class for mapping types

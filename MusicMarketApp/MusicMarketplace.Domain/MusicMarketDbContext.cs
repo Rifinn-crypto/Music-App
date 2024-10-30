@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MusicMarketplace.Domain;
 
-namespace MusicMarketplace.Db;
+namespace MusicMarketplace.Domain;
 /// <summary>
 /// Class MusicMarketDbContext is used to work with database
 /// </summary>

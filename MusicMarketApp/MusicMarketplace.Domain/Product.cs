@@ -12,7 +12,7 @@ public class Product
     /// ID Товара.
     /// </summary>
     [Key]
-    public int Id { get; set; } = 0;
+    public int Id { get; set; }
 
     /// <summary>
     /// Тип аудионосителя: диск|кассета|виниловая пластинка.
@@ -72,7 +72,7 @@ public class Product
     /// ID Продавца.
     /// </summary>
     [ForeignKey("IdSeller")]
-    public int IdSeller { get; set; } = 0;
+    public int IdSeller { get; set; }
 
 
     /// <summary>
