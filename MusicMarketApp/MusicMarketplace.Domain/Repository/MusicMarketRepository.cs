@@ -1,6 +1,4 @@
-﻿using MusicMarketplace.Domain;
-
-namespace MusicMarket.Api.Repository;
+﻿namespace MusicMarketplace.Domain.Repository;
 
 /// <summary>
 /// Сlass MusicMarketRepository
