@@ -1,8 +1,7 @@
-﻿namespace MusicMarket.Tests;
-
-using MusicMarketplace.Domain;
+﻿using MusicMarketplace.Domain;
 using System;
 using System.Collections.Generic;
+namespace MusicMarketplace.Tests;
 
 public class MusicMarketFixture
 {

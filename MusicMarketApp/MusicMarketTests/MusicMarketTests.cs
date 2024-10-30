@@ -1,6 +1,6 @@
-﻿namespace MusicMarket.Tests;
+﻿using System.Linq;
 
-using System.Linq;
+namespace MusicMarketplace.Tests;
 
 public class MusicMarketTest : IClassFixture<MusicMarketFixture>
 {
