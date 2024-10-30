@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using MusicMarketplace;
-using MusicMarketServer;
+using MusicMarket.Appi.MappingProfile;
 using MusicMarket.Api.Repository;
 using System.Reflection;
 

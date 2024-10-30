@@ -1,4 +1,4 @@
-﻿namespace MusicMarketTests;
+﻿namespace MusicMarket.Tests;
 
 using Microsoft.EntityFrameworkCore.Internal;
 using MusicMarketplace.Domain;
