@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicMarketplace.Tests", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicMarketplace.Domain", "MusicMarketplace.Domain\MusicMarketplace.Domain.csproj", "{4E931F5B-860F-4F7E-90AF-991B6D5A048D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicMarket.Api", "MusicMarket.Api\MusicMarket.Api.csproj", "{328F2063-E967-486C-90A7-52E344F5396D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicMarket.Api", "MusicMarket.Api\MusicMarket.Api.csproj", "{328F2063-E967-486C-90A7-52E344F5396D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{5E8CD229-3940-4BB2-9B21-6219585572D9}"
+	ProjectSection(SolutionItems) = preProject
+		MusicMarket.Api\Program.cs = MusicMarket.Api\Program.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
