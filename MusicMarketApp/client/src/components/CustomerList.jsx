@@ -29,7 +29,7 @@ function CustomerList()  {
   return (
     <div className="container mt-5">
       <h2>Customer List</h2>
-      <Link to="/customer/create" className="btn btn-success mb-3">Create New Customer</Link>
+      <Link to="/customer/post" className="btn btn-success mb-3">Create New Customer</Link>
       <ul className="list-group">
         {customers.map((customer) => (
           <li key={customer.id} className="list-group-item d-flex justify-content-between align-items-center">
