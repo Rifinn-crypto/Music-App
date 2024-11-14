@@ -6,6 +6,18 @@ using MusicMarketplace.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("app",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+        });
+});
+
 var mapperConfig = new MapperConfiguration(config => config.AddProfile(new MappingProfile()));
 var mapper = mapperConfig.CreateMapper();
 
@@ -31,6 +43,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("app");
 
 app.UseHttpsRedirection();
 

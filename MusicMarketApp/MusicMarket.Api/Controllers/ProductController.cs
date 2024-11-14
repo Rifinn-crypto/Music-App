@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MusicMarketplace.Domain;
 using MusicMarket.Api.Dto;
 
+
 namespace MusicMarket.Api.Controllers;
 
 /// <summary>
@@ -78,11 +79,13 @@ public class ProductController : ControllerBase
     /// </summary>
     /// <param name="product">New product</param>
     [HttpPost]
-    public async void Post([FromBody] ProductPostDto product)
+    public async Task<ActionResult<ProductGetDto>> Post([FromBody] ProductPostDto product)
     {
         await using var context = await _contextFactory.CreateDbContextAsync();
-        await context.Products.AddAsync(_mapper.Map<Product>(product));
+        var newProduct = _mapper.Map<Product>(product);
+        await context.Products.AddAsync(newProduct);
         await context.SaveChangesAsync();
+        return Ok(_mapper.Map<ProductGetDto>(newProduct));
     }
 
     /// <summary>
@@ -103,7 +106,7 @@ public class ProductController : ControllerBase
         }
         else
         {
-            context.Update(_mapper.Map(productToPut, product));
+            _mapper.Map(productToPut, product);
             await context.SaveChangesAsync();
             return Ok();
         }

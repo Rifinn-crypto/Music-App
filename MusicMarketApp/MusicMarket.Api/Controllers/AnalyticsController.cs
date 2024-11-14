@@ -46,7 +46,7 @@ public class AnalyticsController : ControllerBase
     /// Запрос 1 - Вывести информацию о всех проданных виниловых пластинках.
     /// </summary>
     /// <returns>Ok(information about all sold vinyl records)</returns>
-    [HttpGet("InformationAboutVinylRecords")]
+   [HttpGet("InformationAboutVinylRecords")]
     public async Task<ActionResult<ProductGetDto>> GetSoldVinylRecords()
     {
         await using var context = await _contextFactory.CreateDbContextAsync();
