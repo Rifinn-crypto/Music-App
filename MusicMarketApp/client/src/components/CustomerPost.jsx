@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import api from '../api/api';
+import { useNavigate } from 'react-router-dom';
 
 function CustomerPost() {
   const [name, setName] = useState('');
   const [country, setCountry] = useState('');
   const [address, setAddress] = useState('');
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -18,13 +19,17 @@ function CustomerPost() {
 
     try {
       // Send the POST request to create a new customer
-      const response = await api.post('/customer', customerData);
+      await api.post('/customer', customerData);
       
       alert('Customer created successfully');
       // Clear the form after successful submission
       setName('');
       setCountry('');
       setAddress('');
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
+      navigate('/');
     } catch (error) {
       console.error('Error creating customer:', error);
       // Show error message, if any
