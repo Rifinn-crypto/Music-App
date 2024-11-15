@@ -41,7 +41,7 @@ function CustomerList()  {
             </div>
             <div>
               {/* Links and buttons for editing */}
-              <Link to={`/customer/edit/${customer.id}`} className="btn btn-warning btn-sm me-2">Edit</Link>
+              <Link to={`/customer/update/${customer.id}`} className="btn btn-warning btn-sm me-2">Edit</Link>
               {/* Include the CustomerDelete component */}
               <CustomerDelete id={customer.id} onDeleteSuccess={handleDeleteSuccess} />
             </div>
