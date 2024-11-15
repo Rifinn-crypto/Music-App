@@ -5,23 +5,21 @@ import CustomerDelete from './CustomerDelete';
 
 function CustomerList()  {
   const [customers, setCustomers] = useState([]);
+  const [message, setMessage] = useState(''); // Добавляем состояние для сообщения
 
-  // Fetch the customers from the backend
   const fetchCustomers = async () => {
     try {
       const response = await api.get('/customer');
-      setCustomers(response.data); // Assuming the backend returns the updated customer list
+      setCustomers(response.data);
     } catch (error) {
-      console.error('Error fetching customers:', error);
+      setMessage('Failed to load customers');
     }
   };
 
-  // Handle successful deletion by removing the deleted customer from the list
   const handleDeleteSuccess = (id) => {
     setCustomers(customers.filter((customer) => customer.id !== id));
   };
 
-  // Fetch customers when the component mounts
   useEffect(() => {
     fetchCustomers();
   }, []);
@@ -29,20 +27,25 @@ function CustomerList()  {
   return (
     <div className="container mt-5">
       <h2>Customer List</h2>
-      <Link to="/customer/create" className="btn btn-success mb-3">Create New Customer</Link>
+
+      {/* Выводим сообщение в зависимости от типа */}
+      {message && (
+        <div className={`alert ${message.includes('Failed') ? 'alert-danger' : 'alert-success'}`} role="alert">
+          {message}
+        </div>
+      )}
+
+      <Link to="/customer/post" className="btn btn-success mb-3">Create New Customer</Link>
       <ul className="list-group">
         {customers.map((customer) => (
           <li key={customer.id} className="list-group-item d-flex justify-content-between align-items-center">
-            {/* Updated fields */}
             <div>
               <p><strong>Name:</strong> {customer.name}</p>
               <p><strong>Country:</strong> {customer.country}</p>
               <p><strong>Address:</strong> {customer.address}</p>
             </div>
             <div>
-              {/* Links and buttons for editing */}
-              <Link to={`/customer/edit/${customer.id}`} className="btn btn-warning btn-sm me-2">Edit</Link>
-              {/* Include the CustomerDelete component */}
+              <Link to={`/customer/update/${customer.id}`} className="btn btn-warning btn-sm me-2">Edit</Link>
               <CustomerDelete id={customer.id} onDeleteSuccess={handleDeleteSuccess} />
             </div>
           </li>
@@ -50,6 +53,6 @@ function CustomerList()  {
       </ul>
     </div>
   );
-};
+}
 
 export default CustomerList;
